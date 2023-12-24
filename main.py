@@ -8,6 +8,19 @@ from bidict import bidict
 
 @final
 class Symbol(UserString):
+    """
+    `Symbol` is a class whose constructor returns a `Symbol` value or just
+    a `Symbol` — that's guaranteed to be unique. Symbols are often used to add
+    unique property keys to an object that won't collide with keys any other
+    code might add to the object.
+
+    Every `Symbol()` call is guaranteed to return a unique `Symbol`.
+    Every `Symbol.for("key")` call will always return the same `Symbol` for
+    a given value of `"key"`. When ;Symbol.for("key")` is called, if a `Symbol` with
+    the given key can be found in the global `Symbol` registry, that `Symbol` is
+    returned. Otherwise, a new Symbol is created, added to the global `Symbol`
+    registry under the given key, and returned.
+    """
     __shared: Final[bidict[str, Symbol]] = bidict()
 
     def __init__(self, description: str = "") -> None:
