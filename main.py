@@ -79,10 +79,3 @@ class Symbol(UserString):
 
     def __hash__(self) -> int:
         return self.__hash
-
-
-if __name__ == '__main__':
-    s = Symbol.for_("a")
-    print(s)
-    print(s == Symbol("a"))
-    print(Symbol.key_for(s))
