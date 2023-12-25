@@ -1,6 +1,6 @@
 name: Test with pytest and hypothesis
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 permissions:
   contents: read
@@ -10,17 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up the code base
-      uses: actions/checkout@v4
-    
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.12"
-        cache: "pip"
+      - name: Set up the code base
+        uses: actions/checkout@v4
 
-    - name: Install dependencies
-      run: pip install -r requirements.txt
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
 
-    - name: Run the test suite
-      run: python -m pytest tests.py
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run the test suite
+        run: python -m pytest tests.py
