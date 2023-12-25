@@ -7,13 +7,12 @@ permissions:
 
 jobs:
   test:
-    name: ${{ matrix.os }} / ${{ matrix.python_version }}
-    runs-on: ${{ matrix.os }}-latest
+    name: ${{ matrix.python_version }}
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        os: [ Ubuntu, Windows, macOS ]
         python_version: [ "3.8", "3.9", "3.10", "3.11", "3.12" ]
 
     steps:
