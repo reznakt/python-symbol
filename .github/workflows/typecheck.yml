@@ -1,4 +1,4 @@
-name: Typecheck with mypy
+name: Typecheck
 
 on: [ push, pull_request ]
 

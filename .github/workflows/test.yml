@@ -1,4 +1,4 @@
-name: Test with pytest and hypothesis
+name: Test
 
 on: [ push, pull_request ]
 
