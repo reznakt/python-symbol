@@ -7,7 +7,14 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: ${{ matrix.os }} / ${{ matrix.python_version }}
+    runs-on: ${{ matrix.os }}-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ Ubuntu, Windows, macOS ]
+        python_version: [ "3.8", "3.9", "3.10", "3.11", "3.12" ]
 
     steps:
       - name: Set up the code base
@@ -16,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "${{ matrix.python_version }}"
           cache: "pip"
 
       - name: Install dependencies
