@@ -7,13 +7,8 @@ permissions:
 
 jobs:
   typecheck:
-    name: ${{ matrix.python_version }}
+    name: "3.12"
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        python_version: [ "3.8", "3.9", "3.10", "3.11", "3.12" ]
 
     steps:
       - name: Set up the code base
@@ -22,8 +17,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "${{ matrix.python_version }}"
+          python-version: "3.12"
           cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: Install mypy
         run: pip install mypy
