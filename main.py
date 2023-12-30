@@ -42,12 +42,13 @@ class Symbol(UserString):
         found. Otherwise a new symbol gets created in the global symbol
         registry with this key.
 
-        In contrast to `Symbol()`, the `Symbol.for_key()` function creates a symbol
-        available in a global symbol registry list. `Symbol.for_key()` does also
-        not necessarily create a new symbol on every call, but checks first
-        if a symbol with the given key is already present in the registry.
-        In that case, that symbol is returned. If no symbol with the given
-        key is found, `Symbol.for_key()` will create a new global symbol.
+        In contrast to `Symbol()`, the `Symbol.for_key()` function creates
+        a symbol available in a global symbol registry list.
+        `Symbol.for_key()` does also not necessarily create a new symbol on
+        every call, but checks first if a symbol with the given key is already
+        present in the registry. In that case, that symbol is returned. If no
+        symbol with the given key is found, `Symbol.for_key()` will create
+        a new global symbol.
 
         :param key: The key for the symbol (and also used for the
         description of the symbol).
@@ -62,8 +63,8 @@ class Symbol(UserString):
     @classmethod
     def key_for(cls, sym: Symbol) -> Optional[str]:
         """
-        The `Symbol.key_for()` static method retrieves a shared symbol key from
-        the global symbol registry for the given symbol.
+        The `Symbol.key_for()` static method retrieves a shared symbol key
+        from the global symbol registry for the given symbol.
 
         :param sym: The symbol to find a key for.
         :return: A string representing the key for the given symbol if one is
