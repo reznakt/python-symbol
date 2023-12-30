@@ -37,10 +37,10 @@ class Symbol(UserString):
     @classmethod
     def for_key(cls, key: str) -> Symbol:
         """
-        The `Symbol.for_key()` static method searches for existing symbols in
-        a runtime-wide symbol registry with the given key and returns it if
-        found. Otherwise a new symbol gets created in the global symbol
-        registry with this key.
+        The `Symbol.for_key()` (`Symbol.for()` in JavaScript) static method
+        searches for existing symbols in a runtime-wide symbol registry with
+        the given key and returns it if found. Otherwise a new symbol gets
+        created in the global symbol registry with this key.
 
         In contrast to `Symbol()`, the `Symbol.for_key()` function creates
         a symbol available in a global symbol registry list.
@@ -63,8 +63,9 @@ class Symbol(UserString):
     @classmethod
     def key_for(cls, sym: Symbol) -> Optional[str]:
         """
-        The `Symbol.key_for()` static method retrieves a shared symbol key
-        from the global symbol registry for the given symbol.
+        The `Symbol.key_for()` (`Symbol.keyFor()` in JavaScript) static method
+        retrieves a shared symbol key from the global symbol registry for the
+        given symbol.
 
         :param sym: The symbol to find a key for.
         :return: A string representing the key for the given symbol if one is
