@@ -45,15 +45,15 @@ def test_symbol_key_for_nonexistent() -> None:
 @given(st.text())
 def test_key_for(key: str) -> None:
     assume(key != KEY_NONEXISTENT)
-    assert Symbol.key_for(Symbol.for_(key)) == key
+    assert Symbol.key_for(Symbol.for_key(key)) == key
 
 
 @given(st.text())
 def test_symbol_for(key: str) -> None:
     assume(key != KEY_NONEXISTENT)
 
-    sym1 = Symbol.for_(key)
-    sym2 = Symbol.for_(key)
+    sym1 = Symbol.for_key(key)
+    sym2 = Symbol.for_key(key)
     sym3 = Symbol(key)
 
     assert sym1 == sym2
