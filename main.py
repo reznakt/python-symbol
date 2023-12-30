@@ -16,7 +16,7 @@ class Symbol(UserString):
 
     Every `Symbol()` call is guaranteed to return a unique `Symbol`.
     Every `Symbol.for("key")` call will always return the same `Symbol` for a
-    given value of `"key"`. When ;Symbol.for("key")` is called, if a `Symbol`
+    given value of `"key"`. When `Symbol.for("key")` is called, if a `Symbol`
     with the given key can be found in the global `Symbol` registry, that
     `Symbol` is returned. Otherwise, a new Symbol is created, added to the
     global `Symbol` registry under the given key, and returned.
