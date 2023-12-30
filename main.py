@@ -1,13 +1,12 @@
 from __future__ import annotations
 
-from collections import UserString
-from typing import final, Final, Optional
+from typing import final, Final, Optional, Collection, Iterator
 
 from bidict import bidict
 
 
 @final
-class Symbol(UserString):
+class Symbol(Collection[str]):
     """
     `Symbol` is a class whose constructor returns a `Symbol` value or just
     a `Symbol` — that's guaranteed to be unique. Symbols are often used to add
@@ -23,7 +22,7 @@ class Symbol(UserString):
     """
     __shared: Final[bidict[str, Symbol]] = bidict()
 
-    def __init__(self, description: str = "") -> None:
+    def __init__(self, description: str = "", /) -> None:
         """
         Creates a new Symbol object.
 
@@ -31,11 +30,11 @@ class Symbol(UserString):
         used for debugging but not to access the symbol itself. Defaults to an
         empty string.
         """
-        super().__init__(description)
-        self.__hash = id(self)
+        self.__description: Final[str] = description
+        self.__hash: Final[int] = id(self)
 
     @classmethod
-    def for_key(cls, key: str) -> Symbol:
+    def for_key(cls, key: str, /) -> Symbol:
         """
         The `Symbol.for_key()` (`Symbol.for()` in JavaScript) static method
         searches for existing symbols in a runtime-wide symbol registry with
@@ -61,7 +60,7 @@ class Symbol(UserString):
         return cls.__shared[key]
 
     @classmethod
-    def key_for(cls, sym: Symbol) -> Optional[str]:
+    def key_for(cls, sym: Symbol, /) -> Optional[str]:
         """
         The `Symbol.key_for()` (`Symbol.keyFor()` in JavaScript) static method
         retrieves a shared symbol key from the global symbol registry for the
@@ -73,11 +72,23 @@ class Symbol(UserString):
         """
         return cls.__shared.inverse.get(sym, None)
 
+    def __str__(self) -> str:
+        return self.__description
+
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({super().__repr__()})"
+        return f"{self.__class__.__name__}({repr(self.__description)})"
 
     def __eq__(self, other: object) -> bool:
         return self is other
 
     def __hash__(self) -> int:
         return self.__hash
+
+    def __len__(self) -> int:
+        return len(self.__description)
+
+    def __iter__(self) -> Iterator[str]:
+        return iter(self.__description)
+
+    def __contains__(self, item: object) -> bool:
+        return type(item) is str and item in self.__description
